@@ -1,0 +1,27 @@
+{
+  "name": "docker_02",
+  "version": "1.0.0",
+  "description": "Docker tutorial part 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sravan-P-Thankappan/docker_tutoial.git"
+  },
+  "keywords": [
+    "docker",
+    "node.js"
+  ],
+  "author": "Sravan P Thankappan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sravan-P-Thankappan/docker_tutoial/issues"
+  },
+  "homepage": "https://github.com/Sravan-P-Thankappan/docker_tutoial#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "docker_starter",
+  "version": "1.0.0",
+  "description": "\"docker tutorial\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "docker"
+  ],
+  "author": "Sravan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
