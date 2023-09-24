@@ -1,12 +1,16 @@
 
 const express = require('express');
 
-const path = require('path')
-
 const app = express();
 
-const port = 3000;
+const path = require('path');
 
-app.use(express.static(path.join(__dirname,'public')))
+const { getHomePage } = require('./helpers/route-helper')
+
+const port = 7000;
+
+app.use(express.static(path.join(__dirname, 'public')))
+
+app.get('/', getHomePage);
 
 app.listen(port, () => console.log("Server Started On Port", port));
