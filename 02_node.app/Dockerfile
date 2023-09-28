@@ -3,7 +3,7 @@ FROM node
 
 WORKDIR /app
 
-COPY pacage.json /app
+COPY package.json /app
 
 RUN npm install
 

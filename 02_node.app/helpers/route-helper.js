@@ -2,7 +2,8 @@
 
 function getHomePage(req, res) {
 
-    console.log("getting home page")
+    console.log("getting home page", req.url)
+
     res.sendFile('../public/index.html')
 }
 
