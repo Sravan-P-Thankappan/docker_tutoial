@@ -13,4 +13,5 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', getHomePage);
 
-app.listen(port, () => console.log("Server Started On Port", port));
+
+app.listen(port, () => console.log("Server Started On Port", port)); 

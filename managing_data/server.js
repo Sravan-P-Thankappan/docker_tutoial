@@ -5,6 +5,9 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const env = require('dotenv');
+
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -14,6 +17,7 @@ app.use('/feedback', express.static('feedback'));
 
 app.get('/', (req, res) => {
   const filePath = path.join(__dirname, 'pages', 'feedback.html');
+  console.log("Home Page")
   res.sendFile(filePath);
 });
 
@@ -44,6 +48,8 @@ app.post('/create', async (req, res) => {
 
 });
 
- 
+console.log(process.env.USER, process.env.PASSWORD);
 
-app.listen(80);
+app.listen(process.env.PORT, () => console.log("server running on port", process.env.PORT))
+  .on('error', (er) => console.log(er));
+

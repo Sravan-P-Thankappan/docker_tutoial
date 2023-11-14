@@ -2,11 +2,14 @@
 
 function getHomePage(req, res) {
 
-    console.log("getting home page", req.url)
+    console.log(" home page", req.url)
 
-    res.sendFile('../public/index.html')
+    console.log("Hello")
+    res.send("hi")
+
+    // res.sendFile('../public/index.html')
 }
 
 module.exports = {
     getHomePage
-}
+}   
