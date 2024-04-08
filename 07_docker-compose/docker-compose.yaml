@@ -1,0 +1,63 @@
+version: "3.8"
+services:
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    env_file:
+      - ./env/mongo.env
+    # container_name: mongodb
+    # optional if we don't give any name it takes default name
+    # environment:
+      # - MONGO_INITDB_ROOT_USERNAME=root
+      # - MONGO_INITDB_ROOT_PASSWORD=secret
+      # MONGO_INITDB_ROOT_USERNAME:root
+      # MONGO_INITDB_ROOT_PASSWORD:secret
+  
+    # networks:
+    #   - networkName  
+    # network don't need to specify because compose add all services into same network
+    # but if  we want to give custom network we can give our on network, so the services don't take default network
+
+  server:
+    build: ./backend
+    ports:
+      - '8000:8000'
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+
+    # build is to build an image locally based on docker file  if there is already an image in local machine we can specify like 
+    #====>>>>   image:image_name 
+    # else we have to build that 
+    # we can build in two ways, like above and below. Below meathod is a longer format it is used when our dockerfile is named not
+    # like the standard name (Dockerfile) or Inside the docker file we copy the folder and source code to the working directory;
+    # if the file is in another folder and try to copying contents not from the folder where the file exist ie; copying from the another
+    # folder ; where we have to specify the path in context key
+    # build: 
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    #   args:
+    #     - name=value
+  
+  client:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - server
+
+# named volume should be specified like below, anonymous and bin mound don't
+# the same named volume can be shared in different services.
+volumes:
+  data:
+  logs:
+  
+

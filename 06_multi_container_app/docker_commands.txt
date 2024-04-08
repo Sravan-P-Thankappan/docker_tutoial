@@ -1,0 +1,43 @@
+
+
+------------------
+create network
+------------------
+
+docker network create goals
+
+---------------------
+ Mongodb 
+----------------------
+
+docker run -d --network=goals --rm \
+    --name mongodb -v data:/data/db \
+    mongo
+
+
+----------------------
+Express-app
+----------------------
+
+docker build -t backend .
+
+docker run -dp 8000:8000 --rm \
+    --name server --network=goals \
+    -v logs:/app/logs \
+    -v "/home/sravan/projects/docker/06_multi_container_app/backend/":/app \
+    -v /app/node_modules
+    backend
+
+
+----------------------
+React-app
+----------------------
+
+docker build -t frontend .
+
+docker run -dp 3000:3000 \
+    -v "/home/sravan/projects/docker/06_multi_container_app/frontend/src/":/app/src \
+    -it --name client frontend
+
+
+
